@@ -47,6 +47,7 @@ def parse_body_parameters(line, body):
     body.color = args[2]
     body.m = int(args[3])
     body.x, body.y, body.Vx, body.Vy = int(args[4]), int(args[5]), int(args[6]), int(args[7])
+    # FIXME: не понимает экспоненциальную запись
 
 
 def write_space_objects_data_to_file(output_filename, space_objects):
