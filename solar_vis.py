@@ -9,10 +9,10 @@
 header_font = "Arial-16"
 """Шрифт в заголовке"""
 
-window_width = 800
+window_width = 720
 """Ширина окна"""
 
-window_height = 800
+window_height = 720
 """Высота окна"""
 
 scale_factor = None
@@ -57,30 +57,19 @@ def scale_y(y):
     return y  # FIXME: not done yet
 
 
-def create_star_image(space, star):
-    """Создаёт отображаемый объект звезды.
+def create_body_image(space, body):
+    """Создаёт отображаемый объект тела.
 
     Параметры:
 
     **space** — холст для рисования.
-    **star** — объект звезды.
+    **body** — объект тела.
     """
 
-    x = scale_x(star.x)
-    y = scale_y(star.y)
-    r = star.R
-    star.image = space.create_oval([x - r, y - r], [x + r, y + r], fill=star.color)
-
-
-def create_planet_image(space, planet):
-    """Создаёт отображаемый объект планеты.
-
-    Параметры:
-
-    **space** — холст для рисования.
-    **planet** — объект планеты.
-    """
-    pass  # FIXME: сделать как у звезды
+    x = scale_x(body.x)
+    y = scale_y(body.y)
+    r = body.R
+    body.image = space.create_oval([x - r, y - r], [x + r, y + r], fill=body.color)
 
 
 def update_system_name(space, system_name):
