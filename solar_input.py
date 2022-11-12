@@ -13,17 +13,16 @@ def read_space_objects_data_from_file(input_filename):
     **input_filename** — имя входного файла
     """
 
-    objects = []
+    bodies = []
     with open(input_filename) as input_file:
         for line in input_file:
             if len(line.strip()) == 0 or line[0] == '#':
                 continue  # пустые строки и строки-комментарии пропускаем
-            object_type = line.split()[0].lower()
             body = Body()
             parse_body_parameters(line, body)
-            objects.append(body)
+            bodies.append(body)
 
-    return objects
+    return bodies
 
 
 def parse_body_parameters(line, body):
@@ -50,7 +49,7 @@ def parse_body_parameters(line, body):
     # FIXME: не понимает экспоненциальную запись
 
 
-def write_space_objects_data_to_file(output_filename, space_objects):
+def write_space_objects_data_to_file(output_filename, bodies):
     """Сохраняет данные о космических объектах в файл.
     Строки должны иметь следующий формат:
     Star <радиус в пикселах> <цвет> <масса> <x> <y> <Vx> <Vy>
@@ -62,11 +61,12 @@ def write_space_objects_data_to_file(output_filename, space_objects):
     **space_objects** — список объектов планет и звёзд
     """
     with open(output_filename, 'w') as out_file:
-        for obj in space_objects:
-            print(out_file, "%s %d %s %f" % ('1', 2, '3', 4.5))
-            # FIXME: should store real values
+        for body in bodies:
+            print(out_file, "%s %d %s %f %f %f %f %f" % (body.type.capitaze(), body.R, body.color,
+                                                         body.m, body.x, body.y, body.Vx, body.Vy))
 
 # FIXME: хорошо бы ещё сделать функцию, сохранающую статистику в заданный файл...
+
 
 if __name__ == "__main__":
     print("This module is not for direct call!")
